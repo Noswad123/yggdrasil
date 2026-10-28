@@ -1,4 +1,5 @@
 # Yggdrasil
+![Yggdrasil](img/yggdrasil.jpg)
 
 Shared private files and folders with local history for Git worktrees.
 
