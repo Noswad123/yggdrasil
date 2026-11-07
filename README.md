@@ -31,16 +31,27 @@ runtime selection remain application-owned. Yggdrasil does not start services.
 From the Yggdrasil source directory:
 
 ```sh
-make                  # Build bin/ygg and install ~/.local/bin/ygg
+make                  # Build bin/ygg and install ~/.local/libexec/arcana-dev/yggdrasil/bin/ygg
+# After a valid bundle is installed:
+arcana source use dev yggdrasil
 ygg help
 ```
 
-Put `~/.local/bin` on `PATH` to use `ygg`. `make build` only builds `bin/ygg`;
+Arcana reserves `~/.local/bin` for stable launchers. Do not add the dev root
+(`~/.local/libexec/arcana-dev`) or its app `bin` directories to global `PATH`.
+The app id is `yggdrasil`; its command remains `ygg`.
+`make build` only builds `bin/ygg`;
 `make install` builds and installs, just like plain `make`. Override the destination
 with `make install INSTALL_DIR=/your/preferred/bin`. `make test` runs the tests,
 `make fmt` formats Go sources, and `make clean` removes the local binary, not the
-installed one. Alternatively, use `go install ./cmd/ygg` with Go's normal install
-directory. Building and displaying help do not require source Git metadata.
+installed one. Alternatively, install into the same scoped dev bundle with:
+
+```sh
+GOBIN="$HOME/.local/libexec/arcana-dev/yggdrasil/bin" go install ./cmd/ygg
+```
+
+An explicit standalone `INSTALL_DIR` or `GOBIN` outside this bundle bypasses
+Arcana source selection. Building and displaying help do not require source Git metadata.
 Other commands require an existing non-bare Git repository. This source workspace
 may lack Git metadata: do not run `ygg init` here until a source Git repository
 exists. `ygg init` initializes the **private store**, not the source repository.

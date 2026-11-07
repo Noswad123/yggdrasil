@@ -1,7 +1,7 @@
 APP_NAME = ygg
 CMD_PATH = ./cmd/ygg
 BIN_DIR = ./bin
-INSTALL_DIR ?= $(HOME)/.local/bin
+INSTALL_DIR ?= $(HOME)/.local/libexec/arcana-dev/yggdrasil/bin
 
 .PHONY: all build install check test fmt clean
 
